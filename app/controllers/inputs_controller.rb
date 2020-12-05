@@ -69,6 +69,6 @@ class InputsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def input_params
-      params.require(:input).permit(:title, :zipcode)
+      params.require(:input).permit(:title, :zipcode, :input_file)
     end
 end

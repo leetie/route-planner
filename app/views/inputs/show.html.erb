@@ -10,5 +10,11 @@
   <%= @input.zipcode %>
 </p>
 
+<% if @input.input_file != nil %>
+  <%= "This record has an input_file" %>
+  <%#= rails_blob_path(@input.input_file)%>
+  <%#= image_tag @input.input_file.preview(resize_to_limit: [100,100]) %>
+<% end %>
+
 <%= link_to 'Edit', edit_input_path(@input) %> |
 <%= link_to 'Back', inputs_path %>
