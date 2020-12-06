@@ -12,6 +12,8 @@
 
 <% if @input.input_file != nil %>
   <%= "This record has an input_file" %>
+  <% file = @input.input_file.download %>
+  <%= file %>
   <%#= rails_blob_path(@input.input_file)%>
   <%#= image_tag @input.input_file.preview(resize_to_limit: [100,100]) %>
 <% end %>

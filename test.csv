@@ -1,4 +1,8 @@
-Name,Zipcode,Address
-H3,03301,'22 Main St'
-H3,03301,'265 South St'
-H3,03301,'99 Clinton St'
+Name,Zipcode,Address,Town,State
+H3,03301,265 South St,Concord,NH
+H3,03301,99 Clinton St,Concord,NH
+H3,03301,85 Manchester St,Concord,NH
+H3,03301,12 Harvard St, Concord,NH
+H3,03301,35 Pleasant St,Concord,NH
+H3,03301,137 Rumford St,Concord,NH
+H3,03301,152 N Main St,Concord,NH
