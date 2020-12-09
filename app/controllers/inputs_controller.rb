@@ -46,30 +46,6 @@ class InputsController < ApplicationController
           puts @coords
           File.write('response.json', @parsed)
         end
-        # p data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
       else
@@ -77,6 +53,10 @@ class InputsController < ApplicationController
         format.json { render json: @input.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def osrm_api
+    # stuff
   end
 
   # PATCH/PUT /inputs/1
@@ -111,6 +91,6 @@ class InputsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def input_params
-      params.require(:input).permit(:title, :zipcode, :input_file)
+      params.require(:input).permit(:input_file)
     end
 end

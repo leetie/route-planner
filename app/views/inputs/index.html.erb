@@ -14,8 +14,6 @@
   <tbody>
     <% @inputs.each do |input| %>
       <tr>
-        <td><%= input.title %></td>
-        <td><%= input.zipcode %></td>
         <td><%= link_to 'Show', input %></td>
         <td><%= link_to 'Edit', edit_input_path(input) %></td>
         <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
