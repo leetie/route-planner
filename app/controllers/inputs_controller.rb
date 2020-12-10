@@ -31,6 +31,7 @@ class InputsController < ApplicationController
         @file = @input.input_file.download
         data = CSV.parse(@file, headers: true)
         # TODO S in SOLID
+        coords_ary = []
         data.each do |i|
           # iterate each row (address), call geolocate api for each
           # to get lat-lon coords
@@ -41,9 +42,10 @@ class InputsController < ApplicationController
           state = i["State"]
           @response = RestClient.get "https://app.geocodeapi.io/api/v1/search?apikey=#{ENV['GEOLOCATION_KEY']}&text=#{addr},#{town},#{state},#{zip},United States"
           @parsed = JSON.parse(@response)
-          @coords = @parsed["features"][0]["geometry"]["coordinates"].reverse
+          coords = @parsed["features"][0]["geometry"]["coordinates"].reverse
           puts "coordinates for #{addr}, #{town} #{state}, #{zip}"
-          puts @coords
+          puts coords
+          coords_ary << coords
           File.write('response.json', @parsed)
         end
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
