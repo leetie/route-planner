@@ -40,13 +40,14 @@ class InputsController < ApplicationController
           addr = i["Address"]
           town = i["Town"]
           state = i["State"]
-          @response = RestClient.get "https://app.geocodeapi.io/api/v1/search?apikey=#{ENV['GEOLOCATION_KEY']}&text=#{addr},#{town},#{state},#{zip},United States"
-          @parsed = JSON.parse(@response)
-          coords = @parsed["features"][0]["geometry"]["coordinates"].reverse
+          # POST or GET
+          response = RestClient.get "https://app.geocodeapi.io/api/v1/search?apikey=#{ENV['GEOLOCATION_KEY']}&text=#{addr},#{town},#{state},#{zip},United States"
+          parsed = JSON.parse(response)
+          coords = parsed["features"][0]["geometry"]["coordinates"].reverse
           puts "coordinates for #{addr}, #{town} #{state}, #{zip}"
           puts coords
           coords_ary << coords
-          File.write('response.json', @parsed)
+          File.write('response.json', parsed)
         end
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
@@ -57,7 +58,7 @@ class InputsController < ApplicationController
     end
   end
 
-  def osrm_api
+  def osrm_api(coords)
     # stuff
   end
 
