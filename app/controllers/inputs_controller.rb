@@ -49,6 +49,11 @@ class InputsController < ApplicationController
           coords_ary << coords
           File.write('response.json', parsed)
         end
+
+        p coords_ary
+
+        osrm_api(coords_ary)
+
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
       else
@@ -59,7 +64,16 @@ class InputsController < ApplicationController
   end
 
   def osrm_api(coords)
-    # stuff
+    # coords is array of coordinates, eg 
+    # [
+    #   [0.0,0.0],
+    #   [1.1,1.1]
+    # ]
+
+    #iterate through array of coordinates, generate string for api call to OSRM
+    coords.each do |i|
+      #stuff
+    end
   end
 
   # PATCH/PUT /inputs/1

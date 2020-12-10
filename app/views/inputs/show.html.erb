@@ -1,15 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @input.title %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @input.zipcode %>
-</p>
-
 <% if @input.input_file != nil %>
   <%= "This record has an input_file" %>
   <% file = @input.input_file.download %>
