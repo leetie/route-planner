@@ -1,4 +1,4 @@
-# Route planner built with Rails and Google Maps
+# Route planner built with Rails and OSRM 🚚
 
 `rails active_storage:install rails db:migrate`
 

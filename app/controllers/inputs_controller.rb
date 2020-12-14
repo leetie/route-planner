@@ -49,11 +49,7 @@ class InputsController < ApplicationController
           coords_ary << coords
           File.write('response.json', parsed)
         end
-
-        p coords_ary
-
         osrm_api(coords_ary)
-
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
       else
@@ -71,7 +67,6 @@ class InputsController < ApplicationController
     # ]
 
     # for some reason, the input expected by osrm and address->coord api is expected to be the reverse of a service like google.
-
 
     #iterate through array of coordinates, generate string for api call to OSRM
     str = ""
@@ -91,6 +86,7 @@ class InputsController < ApplicationController
     response = RestClient.get("127.0.0.1:5000/trip/v1/driving/#{str}")
     puts response
     # TODO
+    # move this logic to models where it belongs
     # write methods for handling OSRM response
     # break up methods
   end
