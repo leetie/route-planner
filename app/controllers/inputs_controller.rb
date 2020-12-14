@@ -70,10 +70,29 @@ class InputsController < ApplicationController
     #   [1.1,1.1]
     # ]
 
+    # for some reason, the input expected by osrm and address->coord api is expected to be the reverse of a service like google.
+
+
     #iterate through array of coordinates, generate string for api call to OSRM
+    str = ""
     coords.each do |i|
-      #stuff
+      # reversing order here
+      str << i[1].to_s
+      str << ","
+      str << i[0].to_s
+      #append semicolon to query string if this is not the last coord pair
+      if i != coords[-1]
+        str << ";"
+      end
     end
+    p "coords are #{coords}"
+    p "str is #{str}"
+
+    response = RestClient.get("127.0.0.1:5000/trip/v1/driving/#{str}")
+    puts response
+    # TODO
+    # write methods for handling OSRM response
+    # break up methods
   end
 
   # PATCH/PUT /inputs/1
